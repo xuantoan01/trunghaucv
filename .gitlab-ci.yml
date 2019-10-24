@@ -1,0 +1,16 @@
+image: node:aipine
+cache:
+  path:
+    - node_modules/
+
+deploy_production:
+  stage: deploy
+  environment: Production
+  only:
+    -master
+  script:
+    - npm install
+    - npm i -g firebase-tools
+    - npm run build
+    - firebase deploy --non-interactive --token
+    "YOUR-FIREBASE-TOKEN"
